@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import styles from "./ScrapeEmails.module.css";
+import { Button } from "../../components/Button/Button";
 export const SrapeEmails = () => {
   const categories = [
     { category: "Podcasts", URLs: ["www.google.com"] },
@@ -51,9 +52,7 @@ export const SrapeEmails = () => {
       {categories[selectedCategory]?.URLs.length === 0 ? (
         <p className={styles.noURLsLabel}>No URLs for selected community</p>
       ) : null}
-      <button onClick={handleScrapeClick} className={styles.scrapeButton}>
-        Scrape
-      </button>
+      <Button onClick={handleScrapeClick} buttonLabel="Scrape" />
     </Wrapper>
   );
 };
