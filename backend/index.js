@@ -1,10 +1,16 @@
 var express = require("express");
 var app = express();
+const cors = require("cors");
 
-app.get("/", function (req, res) {
-  res.send("Hello World");
-});
+// app.use(express.static("public"));
+var things = require("./src/routes/things.js");
+app.use(
+  cors(
+    { origin: "http://localhost:3000" } // Allow only this origin
+  )
+);
+app.use("/things", things);
 
-var server = app.listen(5000, function () {
+app.listen(5000, function () {
   console.log("Express App running at http://127.0.0.1:5000/");
 });
