@@ -6,14 +6,14 @@ export const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.div}>
-      <img src={icon} className={styles.icon}></img>
+    <header className={styles.div}>
+      <img src={icon} className={styles.icon} alt="Email Icon"></img>
       <button className={styles.button} onClick={() => navigate("/")}>
         Scrape
       </button>
       <button className={styles.button} onClick={() => navigate("sendEmails")}>
         Send
       </button>
-    </div>
+    </header>
   );
 };

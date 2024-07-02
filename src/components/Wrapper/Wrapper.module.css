@@ -1,0 +1,14 @@
+.container {
+  background: linear-gradient(hsl(213, 19%, 18%), hsl(210, 17%, 14%));
+  width: 22rem;
+  margin: 0 auto;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+}
+.fullContainer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}

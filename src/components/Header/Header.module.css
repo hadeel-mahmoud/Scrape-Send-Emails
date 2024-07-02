@@ -3,18 +3,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 2px inset hsl(210, 18%, 7%);
 }
 .button {
   background-color: transparent;
   border-width: 0;
   cursor: pointer;
   color: white;
-  font-size: medium;
+  font-size: x-large;
   font-family: "Courier New", Courier, monospace;
   margin-inline: 1rem;
 }
 .button:hover {
   color: hsl(25, 97%, 53%);
+  background-color: hsl(213, 19%, 18%);
+  padding: 8px;
+  border-radius: 10px;
 }
 .icon {
   width: 2rem;
