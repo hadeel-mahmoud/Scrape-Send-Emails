@@ -2,6 +2,7 @@ import { useState } from "react";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import styles from "./ScrapeEmails.module.css";
 import { Button } from "../../components/Button/Button";
+import { Dropdown } from "../../components/Dropdown/Dropdown";
 export const SrapeEmails = () => {
   const categories = [
     { category: "Podcasts", URLs: ["www.google.com"] },
@@ -9,6 +10,8 @@ export const SrapeEmails = () => {
     { category: "Podcasts", URLs: [] },
   ];
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedURL, setSelectedURL] = useState(null);
+
   function handleScrapeClick() {
     //connect to API
   }
@@ -18,35 +21,19 @@ export const SrapeEmails = () => {
         Choose a Community to Scrape Emails From
       </label>
 
-      <select
-        className={styles.dropdown}
-        defaultValue={"DEFAULT"}
-        onChange={(event) => {
-          setSelectedCategory(event.target.value);
-        }}
-      >
-        <option value={"DEFAULT"} disabled>
-          Choose
-        </option>
-        {categories.map((category, index) => (
-          <option key={index} value={index}>
-            {category.category}
-          </option>
-        ))}
-      </select>
+      <Dropdown
+        onDropdownChange={(value) => setSelectedCategory(value)}
+        data={categories}
+        placeholder={"Choose Community"}
+        attribute="category"
+      />
 
       {categories[selectedCategory]?.URLs.length > 0 ? (
-        <select
-          onChange={(index) => {
-            setSelectedCategory(index);
-          }}
-        >
-          {categories[selectedCategory].URLs?.map((URL, index) => (
-            <option key={index} value={index}>
-              {URL}
-            </option>
-          ))}
-        </select>
+        <Dropdown
+          onDropdownChange={(value) => setSelectedURL(value)}
+          data={categories[selectedCategory].URLs}
+          placeholder={"Choose URL"}
+        />
       ) : null}
 
       {categories[selectedCategory]?.URLs.length === 0 ? (
