@@ -1,0 +1,12 @@
+.labels {
+  color: white;
+  font-family: cursive;
+  font-size: larger;
+  margin: 0.5rem !important;
+  display: inline-block;
+}
+
+.emailBody {
+  width: 100%;
+  max-width: 100%;
+}
