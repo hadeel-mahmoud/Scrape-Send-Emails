@@ -4,7 +4,7 @@ import styles from "./ScrapeEmails.module.css";
 import { Button } from "../../components/Button/Button";
 import { Dropdown } from "../../components/Dropdown/Dropdown";
 export const SrapeEmails = (props) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCommunity, setSelectedCommunity] = useState(null);
   const [selectedURL, setSelectedURL] = useState(null);
 
   function handleScrapeClick() {
@@ -30,21 +30,21 @@ export const SrapeEmails = (props) => {
       </label>
 
       <Dropdown
-        onDropdownChange={(value) => setSelectedCategory(value)}
+        onDropdownChange={(value) => setSelectedCommunity(value)}
         data={props.communitiesData}
         placeholder={"Choose Community"}
         attribute="category"
       />
 
-      {props.communitiesData[selectedCategory]?.urls.length > 0 ? (
+      {props.communitiesData[selectedCommunity]?.urls.length > 0 ? (
         <Dropdown
           onDropdownChange={(value) => setSelectedURL(value)}
-          data={props.communitiesData[selectedCategory].urls}
+          data={props.communitiesData[selectedCommunity].urls}
           placeholder={"Choose URL"}
         />
       ) : null}
 
-      {props.communitiesData[selectedCategory]?.urls.length === 0 ? (
+      {props.communitiesData[selectedCommunity]?.urls.length === 0 ? (
         <p className={styles.noURLsLabel}>No urls for selected community</p>
       ) : null}
       <Button onClick={handleScrapeClick} buttonLabel="Scrape" />

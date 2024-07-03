@@ -5,7 +5,7 @@ import Wrapper from "../../components/Wrapper/Wrapper";
 import styles from "./SendEmails.module.css";
 
 export const SendEmails = (props) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCommunity, setSelectedCommunity] = useState(null);
 
   function handleSendClick() {
     //connect to API
@@ -14,7 +14,7 @@ export const SendEmails = (props) => {
     <Wrapper>
       <label className={styles.labels}>Send Emails To</label>
       <Dropdown
-        onDropdownChange={(value) => setSelectedCategory(value)}
+        onDropdownChange={(value) => setSelectedCommunity(value)}
         data={props.communitiesData}
         placeholder={"Choose Community"}
         attribute="category"
