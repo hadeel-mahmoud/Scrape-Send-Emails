@@ -4,13 +4,7 @@ import { Dropdown } from "../../components/Dropdown/Dropdown";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import styles from "./SendEmails.module.css";
 
-export const SendEmails = () => {
-  const categories = [
-    { category: "All Communities", URLs: [] },
-    { category: "Podcasts", URLs: ["www.google.com"] },
-    { category: "Skool", URLs: [] },
-    { category: "Podcasts", URLs: [] },
-  ];
+export const SendEmails = (props) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   function handleSendClick() {
@@ -21,7 +15,7 @@ export const SendEmails = () => {
       <label className={styles.labels}>Send Emails To</label>
       <Dropdown
         onDropdownChange={(value) => setSelectedCategory(value)}
-        data={categories}
+        data={props.communitiesData}
         placeholder={"Choose Community"}
         attribute="category"
       />
