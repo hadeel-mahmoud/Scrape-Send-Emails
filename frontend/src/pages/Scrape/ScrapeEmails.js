@@ -36,16 +36,16 @@ export const SrapeEmails = (props) => {
         attribute="category"
       />
 
-      {props.communitiesData[selectedCategory]?.URLs.length > 0 ? (
+      {props.communitiesData[selectedCategory]?.urls.length > 0 ? (
         <Dropdown
           onDropdownChange={(value) => setSelectedURL(value)}
-          data={props.communitiesData[selectedCategory].URLs}
+          data={props.communitiesData[selectedCategory].urls}
           placeholder={"Choose URL"}
         />
       ) : null}
 
-      {props.communitiesData[selectedCategory]?.URLs.length === 0 ? (
-        <p className={styles.noURLsLabel}>No URLs for selected community</p>
+      {props.communitiesData[selectedCategory]?.urls.length === 0 ? (
+        <p className={styles.noURLsLabel}>No urls for selected community</p>
       ) : null}
       <Button onClick={handleScrapeClick} buttonLabel="Scrape" />
     </Wrapper>

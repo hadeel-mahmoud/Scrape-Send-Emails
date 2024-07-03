@@ -3,23 +3,20 @@ import { Header } from "./components/Header/Header";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SendEmails } from "./pages/Send/SendEmails";
 import { SrapeEmails } from "./pages/Scrape/ScrapeEmails";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getCommunities } from "./services/services";
 
 function App() {
-  const communitiesData = [
-    { category: "Podcasts", URLs: ["www.google.com"] },
-    { category: "Skool", URLs: [] },
-    { category: "Sororities", URLs: [] },
-  ];
+  const [communitiesData, setCommunitiesData] = useState(null);
   const isFirstRender = useRef(true);
 
   useEffect(() => {
     if (isFirstRender.current) {
       const fetchCommunities = async () => {
         try {
-          const data = await getCommunities();
-          console.log(data);
+          const payload = await getCommunities();
+          console.log(payload.data);
+          setCommunitiesData(payload.data);
         } catch (error) {
           throw error;
         }
@@ -28,22 +25,26 @@ function App() {
       isFirstRender.current = false;
     }
   }, []);
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={<SrapeEmails communitiesData={communitiesData} />}
-          />
-          <Route
-            path="/sendEmails"
-            element={<SendEmails communitiesData={communitiesData} />}
-          />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </BrowserRouter>
+      {communitiesData ? (
+        <BrowserRouter>
+          {console.log(communitiesData)}
+          <Header />
+          <Routes>
+            <Route
+              path="/"
+              element={<SrapeEmails communitiesData={communitiesData} />}
+            />
+            <Route
+              path="/sendEmails"
+              element={<SendEmails communitiesData={communitiesData} />}
+            />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </BrowserRouter>
+      ) : null}
     </div>
   );
 }
