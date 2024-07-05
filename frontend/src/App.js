@@ -30,7 +30,6 @@ function App() {
     <div className="App">
       {communitiesData ? (
         <BrowserRouter>
-          {console.log(communitiesData)}
           <Header />
           <Routes>
             <Route

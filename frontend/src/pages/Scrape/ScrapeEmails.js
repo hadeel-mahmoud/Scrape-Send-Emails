@@ -7,22 +7,7 @@ export const SrapeEmails = (props) => {
   const [selectedCommunity, setSelectedCommunity] = useState(null);
   const [selectedURL, setSelectedURL] = useState(null);
 
-  function handleScrapeClick() {
-    //connect to API
-    // fetch("http://127.0.0.1:5000/things")
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error("Network response was not ok " + response.statusText);
-    //     }
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("There was a problem with the fetch operation:", error);
-    //   });
-  }
+  function handleScrapeClick() {}
   return (
     <Wrapper>
       <label className={styles.communityLabel}>
