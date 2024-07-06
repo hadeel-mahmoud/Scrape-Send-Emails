@@ -23,7 +23,7 @@ export const SendEmails = (props) => {
 
       <textarea
         rows={18}
-        placeholder="Enter the email content..."
+        placeholder="Enter the email content... Note: You need to add <br/> for starting a new line"
         className={styles.emailBody}
       />
 
