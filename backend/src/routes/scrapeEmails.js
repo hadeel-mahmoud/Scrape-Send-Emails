@@ -4,10 +4,9 @@ const Email = require("../models/Email");
 var router = express.Router();
 router.post("/insert-url-scraped-emails", async (req, res) => {
   try {
-    const response = await axios(
-      "https://raw.githubusercontent.com/ageitgey/all-podcasts-dataset/master/a.tsv"
-    );
-    const { communityTypeID } = req.body;
+    const { communityTypeID, url } = req.body;
+
+    const response = await axios(url);
     const html_data = response.data;
     // ^ => start, $ => end , \w => words , + => one or more, [\w-]{2,4} => match sequence of 2 to 4 consecutive characters or hypens e g=> .com/.net
     const emailPattern = /[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/g;
