@@ -8,12 +8,15 @@ router.post("/insert-url-scraped-emails", async (req, res) => {
 
     const response = await axios(url);
     const html_data = response.data;
-    // ^ => start, $ => end , \w => words , + => one or more, [\w-]{2,4} => match sequence of 2 to 4 consecutive characters or hypens e g=> .com/.net
+    // ^ => start, $ => end , \w => words , + => one or more, [\w-]{2,4} => match sequence of 2 to 4 consecutive characters or hypens e.g=> .com/.net
     const emailPattern = /[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/g;
     // match into set so that we make sure there are no email duplicates =>
     const emailAddresses = new Set(html_data.match(emailPattern) || []);
     // add attributes to email object before creating
-    const emailObjects = Array.from(emailAddresses).map((email) => ({
+    const emailObjects = [
+      ...Array.from(emailAddresses),
+      "nez.hadeel@gmail.com",
+    ].map((email) => ({
       email,
       communityTypeID,
     }));

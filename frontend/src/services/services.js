@@ -24,3 +24,16 @@ export const scrapeEmails = async (communityTypeID, url) => {
     throw error;
   }
 };
+
+export const unsubscribeFromEmails = async (id) => {
+  try {
+    const response = await axios.put(
+      `${API_BASE_URL}/sendEmails/update-subscription-status`,
+      { id: id }
+    );
+    return response;
+  } catch (error) {
+    console.error("Error getting communities", error);
+    throw error;
+  }
+};

@@ -41,7 +41,7 @@ function App() {
               element={<SendEmails communitiesData={communitiesData} />}
             />
             <Route
-              path="/unsubscribeFromEmails"
+              path="/unsubscribeFromEmails/:id"
               element={<UnsubscribefromEmail />}
             />
             <Route path="*" element={<Navigate to="/" />} />
