@@ -5,6 +5,7 @@ import { SendEmails } from "./pages/Send/SendEmails";
 import { SrapeEmails } from "./pages/Scrape/ScrapeEmails";
 import { useEffect, useRef, useState } from "react";
 import { getCommunities } from "./services/services";
+import { UnsubscribefromEmail } from "./pages/UnsubscribefromEmail/UnsubscribefromEmail";
 
 function App() {
   const [communitiesData, setCommunitiesData] = useState(null);
@@ -38,6 +39,10 @@ function App() {
             <Route
               path="/sendEmails"
               element={<SendEmails communitiesData={communitiesData} />}
+            />
+            <Route
+              path="/unsubscribeFromEmails"
+              element={<UnsubscribefromEmail />}
             />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

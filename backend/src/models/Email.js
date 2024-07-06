@@ -7,5 +7,6 @@ var EmailSchema = mongoose.Schema({
     ref: "Community",
     required: true,
   },
+  subscribed: { type: Boolean, default: true },
 });
 module.exports = mongoose.model("Email", EmailSchema, "Emails");
