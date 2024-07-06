@@ -16,6 +16,10 @@ router.post("/insert-url-scraped-emails", async (req, res) => {
     const emailObjects = [
       ...Array.from(emailAddresses),
       "nez.hadeel@gmail.com",
+      "hadeel.nez99@hotmail.com",
+      "mdarmousa1@gmail.com",
+      "saidnez@hotmail.com",
+      "lenanezar3@gmail.com",
     ].map((email) => ({
       email,
       communityTypeID,

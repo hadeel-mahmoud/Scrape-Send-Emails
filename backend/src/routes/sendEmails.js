@@ -15,20 +15,22 @@ var Email = require("../models/Email.js");
 
 router.post("/send-emails", async (req, res) => {
   try {
-    let emailBody = "<strong>It is working!!</strong>";
-    emailBody = emailBody.concat(
-      '<br/><br/><br/><a href="`http://localhost:3000/unsubscribeFromEmails/6689a46f9b51e9cd995e77e0`">Unsubscribe</a>'
-    );
+    let emailBody = `<strong>Hi!<br/><br/>
+    We hope you are doing well. This is a testing email</strong>
+    <br><br>  
+    Best Regards HM
+    <br/><br/><br/>
+    <a href="https://localhost:3000/unsubscribeFromEmails/6689a46f9b51e9cd995e77e0">Unsubscribe</a>`;
+
     await sendEmail({
       //the client email
-      to: "nez.hadeel@gmail.com",
+      to: ["nez.hadeel@gmail.com", "hadeel.nez99@gmail.com"],
       //sendGrid sender id
       from: "nez.hadeel@gmail.com",
       subject: "Does this work?",
-      text: "",
+      text: "Hello!",
       html: emailBody,
     });
-    console.log(res, "success");
     res.sendStatus(200);
   } catch (error) {
     res.status(500).send({ error: error });
