@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const communities = require("./src/routes/communities.js");
 const bodyParser = require("body-parser");
 const sendEmails = require("./src/routes/sendEmails.js");
+const scrapeEmails = require("./src/routes/scrapeEmails.js");
+
 // const scrapeEmails = require("./src/utils/scrapeEmails.js");
 
 // parse application/json
@@ -16,6 +18,7 @@ app.use(
 );
 app.use("/communities", communities);
 app.use("/sendEmails", sendEmails);
+app.use("/scrapeEmails", scrapeEmails);
 
 // app.use("/scrapeEmails", scrapeEmails);
 

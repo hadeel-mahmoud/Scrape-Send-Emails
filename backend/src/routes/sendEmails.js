@@ -1,6 +1,18 @@
 var express = require("express");
 var router = express.Router();
 var sendEmail = require("../utils/sendEmail.js");
+var Email = require("../models/Email.js");
+
+router.post("/create-email", async (req, res) => {
+  try {
+    const newEmail = new Email(req.body);
+    const email = await newEmail.save();
+    res.json(email);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 router.post("/test-email", async (req, res) => {
   try {
     await sendEmail({
