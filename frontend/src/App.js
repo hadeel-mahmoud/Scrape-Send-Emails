@@ -15,7 +15,6 @@ function App() {
       const fetchCommunities = async () => {
         try {
           const payload = await getCommunities();
-          console.log(payload.data);
           setCommunitiesData(payload.data);
         } catch (error) {
           throw error;

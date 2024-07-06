@@ -11,3 +11,16 @@ export const getCommunities = async () => {
     throw error;
   }
 };
+
+export const scrapeEmails = async (communityTypeID, url) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/scrapeEmails/insert-url-scraped-emails`,
+      { communityTypeID: communityTypeID, url: url }
+    );
+    return response;
+  } catch (error) {
+    console.error("Error getting communities", error);
+    throw error;
+  }
+};

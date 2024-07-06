@@ -3,11 +3,45 @@ import Wrapper from "../../components/Wrapper/Wrapper";
 import styles from "./ScrapeEmails.module.css";
 import { Button } from "../../components/Button/Button";
 import { Dropdown } from "../../components/Dropdown/Dropdown";
+import { scrapeEmails } from "../../services/services";
+import Loader from "../../components/Loader/Loader";
 export const SrapeEmails = (props) => {
   const [selectedCommunity, setSelectedCommunity] = useState(null);
   const [selectedURL, setSelectedURL] = useState(null);
+  const [showLoader, setShowLoader] = useState(false);
 
-  function handleScrapeClick() {}
+  const communitiesData = props.communitiesData;
+  function handleScrapeClick() {
+    console.log(communitiesData);
+    if (selectedURL) {
+      setShowLoader(true);
+
+      scrapeEmails(
+        communitiesData[selectedCommunity].id,
+        communitiesData[selectedCommunity].urls[selectedURL]
+      )
+        .then((response) => {
+          setShowLoader(false);
+
+          if (response.status === 201) {
+            alert(
+              "Emails have been successfuly scraped and saved into the database"
+            );
+          } else {
+            alert("Oops! Something went wrong");
+          }
+        })
+        .catch(function (error) {
+          alert(`Oops! Something went wrong ${error}`);
+          setShowLoader(false);
+        });
+    }
+  }
+  function handleCommunitySelection(value) {
+    setSelectedCommunity(value);
+    //reset url selection
+    setSelectedURL(null);
+  }
   return (
     <Wrapper>
       <label className={styles.communityLabel}>
@@ -15,24 +49,26 @@ export const SrapeEmails = (props) => {
       </label>
 
       <Dropdown
-        onDropdownChange={(value) => setSelectedCommunity(value)}
-        data={props.communitiesData}
+        onDropdownChange={(value) => handleCommunitySelection(value)}
+        data={communitiesData}
         placeholder={"Choose Community"}
         attribute="category"
       />
 
-      {props.communitiesData[selectedCommunity]?.urls.length > 0 ? (
+      {communitiesData[selectedCommunity]?.urls.length > 0 ? (
         <Dropdown
           onDropdownChange={(value) => setSelectedURL(value)}
-          data={props.communitiesData[selectedCommunity].urls}
+          data={communitiesData[selectedCommunity].urls}
           placeholder={"Choose URL"}
         />
       ) : null}
 
-      {props.communitiesData[selectedCommunity]?.urls.length === 0 ? (
+      {communitiesData[selectedCommunity]?.urls.length === 0 ? (
         <p className={styles.noURLsLabel}>No urls for selected community</p>
       ) : null}
-      <Button onClick={handleScrapeClick} buttonLabel="Scrape" />
+      <Button onClick={() => handleScrapeClick()} buttonLabel="Scrape" />
+
+      {showLoader ? <Loader /> : null}
     </Wrapper>
   );
 };
