@@ -13,7 +13,7 @@ router.post("/create-email", async (req, res) => {
   }
 });
 
-router.post("/test-email", async (req, res) => {
+router.post("/send-emails", async (req, res) => {
   try {
     await sendEmail({
       //the client email
