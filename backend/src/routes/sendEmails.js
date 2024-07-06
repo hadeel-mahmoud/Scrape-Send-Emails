@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var sendEmail = require("../utils/sendEmail.js");
 var Email = require("../models/Email.js");
-
 // router.post("/create-email", async (req, res) => {
 //   try {
 //     const newEmailAddress = new Email(req.body);
@@ -22,6 +21,15 @@ router.post("/send-emails", async (req, res) => {
     <br/><br/><br/>
     <a href="https://localhost:3000/unsubscribeFromEmails/6689a46f9b51e9cd995e77e0">Unsubscribe</a>`;
 
+    // this regex takes all content between curly braces
+    const regex = /{[^{}|]*\|[^{}|]*}/g;
+    // spintax variations
+    const replacedEmailContent = emailBody.replace(regex, (match) => {
+      const options = match.substring(1, match.length - 1).split("|"); // Substring input values are for removing outer {}
+      const randomIndex = Math.floor(Math.random() * options.length);
+      return options[randomIndex];
+    });
+
     await sendEmail({
       //the client email
       to: ["nez.hadeel@gmail.com", "hadeel.nez99@gmail.com"],
@@ -29,7 +37,7 @@ router.post("/send-emails", async (req, res) => {
       from: "nez.hadeel@gmail.com",
       subject: "Does this work?",
       text: "Hello!",
-      html: emailBody,
+      html: replacedEmailContent,
     });
     res.sendStatus(200);
   } catch (error) {

@@ -23,7 +23,7 @@ export const SendEmails = (props) => {
 
       <textarea
         rows={18}
-        placeholder="Enter the email content... Note: You need to add <br/> for starting a new line"
+        placeholder="Note: To use spintax variations use this structure: {Hello|Hi}, this is a {test|demo}. Also use <br/> for starting a new line"
         className={styles.emailBody}
       />
 
