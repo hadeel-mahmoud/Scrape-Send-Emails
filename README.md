@@ -13,7 +13,7 @@ In order to install the project
    - Click on `Create New Sender` under Marketing=> Senders  
      ![Sender ](./README-IMAGES/sender-screenshot.png)
    - Fill in all sender information
-     ![Sender Info ](./README-IMAGES/fill-sender-info)
+     ![Sender Info ](./README-IMAGES/fill-sender-info.png)
    - You will receieve a verification email
    - Copy API key from Email API => Integration Guide => Web API=> NodeJS.
    - Rename `.env example` into `.env`
@@ -24,9 +24,10 @@ In order to install the project
 
 4. Database:
    - Install `MongoDB` on your device
-   - Install `mangoose` into your backend project using `npm i mongoose`
-   - Add your DB connection string into the backend index.js file
+   - Add your DB connection string into the backend index.js file or make its matching with existing port or update if needed
      ![Database Connection](./README-IMAGES/database-connection-screenshot.png)
+     -Import the JSON file containing the communities from the 'data' file in the repo using MongoDB Compass
+     ![Databse table](database-table.png)
 
 # Usage
 
@@ -38,7 +39,7 @@ Scraping Emails
 4. For now the only available URLs are for Podcast Communities
    ![Scrape emails](./README-IMAGES/scrape-emails.png)
 5. If some or all emails already exist, no records will be inserted
-   ![Scrape existing emails](./README-IMAGES/scrape-existing-emails)
+   ![Scrape existing emails](./README-IMAGES/scrape-existing-emails.png)
 
 Sending Emails
 

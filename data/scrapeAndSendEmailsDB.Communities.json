@@ -1,0 +1,26 @@
+[{
+  "_id": {
+    "$oid": "66859fcf2896840849a81593"
+  },
+  "category": "Skool",
+  "urls": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66859fdb2896840849a81595"
+  },
+  "category": "Sororities",
+  "urls": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66859fe62896840849a81597"
+  },
+  "category": "Podcasts",
+  "urls": [
+    "https://raw.githubusercontent.com/ageitgey/all-podcasts-dataset/master/a.tsv"
+  ],
+  "__v": 0
+}]
