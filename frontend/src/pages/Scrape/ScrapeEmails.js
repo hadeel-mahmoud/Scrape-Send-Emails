@@ -12,13 +12,12 @@ export const SrapeEmails = (props) => {
 
   const communitiesData = props.communitiesData;
   function handleScrapeClick() {
-    console.log(communitiesData);
+    console.log(communitiesData[selectedCommunity]);
     // !showLoader is to avoid sending more than one request if user clicks more than once
     if (selectedURL && !showLoader) {
       setShowLoader(true);
-
       scrapeEmails(
-        communitiesData[selectedCommunity].id,
+        communitiesData[selectedCommunity]["_id"],
         communitiesData[selectedCommunity].urls[selectedURL]
       )
         .then((response) => {

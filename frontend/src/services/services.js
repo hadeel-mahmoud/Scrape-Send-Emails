@@ -37,3 +37,16 @@ export const unsubscribeFromEmails = async (id) => {
     throw error;
   }
 };
+
+export const sendEmails = async (emailBody, communityTypeID) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/sendEmails/send-emails`,
+      { communityTypeID: communityTypeID, emailBody: emailBody }
+    );
+    return response;
+  } catch (error) {
+    console.error("Error getting communities", error);
+    throw error;
+  }
+};

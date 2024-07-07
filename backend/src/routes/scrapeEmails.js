@@ -2,13 +2,10 @@ var express = require("express");
 var axios = require("axios");
 const Email = require("../models/Email");
 const scrapeEmails = require("../utils/scrapeEmail");
-const { queryTopSubscribedEmails } = require("../services/emailServices");
 var router = express.Router();
 
 router.post("/insert-url-scraped-emails", async (req, res) => {
   try {
-    const top50 = await queryTopSubscribedEmails(3);
-
     const { communityTypeID, url } = req.body;
     const response = await axios(url);
     const scrapedEmails = scrapeEmails(response.data, communityTypeID);
