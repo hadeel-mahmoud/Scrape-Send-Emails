@@ -22,11 +22,11 @@ const sendGridEmail = process.env.SENDGRID_EMAIL;
 router.post("/send-emails", async (req, res) => {
   try {
     let { emailBody, communityTypeID } = req.body;
-    // const topEmails = await queryTopSubscribedEmails(3,communityTypeID);
-    const recipients = await queryByEmails([
-      "nez.hadeel@gmail.com",
-      "mdarmousa1@gmail.com",
-    ]);
+    const recipients = await queryTopSubscribedEmails(3, communityTypeID);
+    // const recipients = await queryByEmails([
+    //   "nez.hadeel@gmail.com",
+
+    // ]);
 
     // this regex takes all content between curly braces
     const regex = /{[^{}|]*\|[^{}|]*}/g;
@@ -37,19 +37,32 @@ router.post("/send-emails", async (req, res) => {
       return options[randomIndex];
     });
 
+    const fullEmailTemplate = replacedEmailContent.concat(
+      `<a href="http://localhost:3000/unsubscribeFromEmails/{{email_id}}">Unsubscribe</a>`
+    );
     const msg = {
       from: sendGridEmail,
       subject: "Does this work?",
-      text: "Hello!",
       personalizations: [],
+      content: [
+        {
+          type: "text/plain",
+          value: fullEmailTemplate,
+        },
+        {
+          type: "text/html",
+          value: fullEmailTemplate,
+        },
+      ],
     };
-
     recipients.forEach((recipient) => {
+      let id = recipient.id;
       msg.personalizations.push({
-        to: [{ email: recipient.email }],
-        html: replacedEmailContent.concat(
-          `<a href="https://localhost:3000/unsubscribeFromEmails/${recipient.id}">Unsubscribe</a>`
-        ),
+        to: { email: recipient.email },
+        substitutionWrappers: ["{{", "}}"],
+        substitutions: {
+          email_id: id,
+        },
       });
     });
 
@@ -57,7 +70,6 @@ router.post("/send-emails", async (req, res) => {
       const result = await sendEmail(msg);
       res.status(200).json({ status: "success", result });
     } catch (error) {
-      console.log(error);
       res.status(500).json({ error: "Failed to send emails" });
     }
   } catch (error) {
