@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 var sendEmail = require("../utils/sendEmail.js");
 var Email = require("../models/Email.js");
+require("dotenv").config();
+
+const sendGridEmail = process.env.SENDGRID_EMAIL;
 // router.post("/create-email", async (req, res) => {
 //   try {
 //     const newEmailAddress = new Email(req.body);
@@ -44,7 +47,7 @@ router.post("/send-emails", async (req, res) => {
     });
 
     const msg = {
-      from: "nez.hadeel@gmail.com",
+      from: sendGridEmail,
       subject: "Does this work?",
       text: "Hello!",
       personalizations: [],

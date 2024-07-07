@@ -8,10 +8,20 @@ In order to install the project
 
 1. Clone github repo (both frontend and backend) into your code editor e.g. Visual Studio
 2. Run `npm i` in both the frontend and backend project separately
-3. Create account on Sendgrid and copy API key.
+3. Create account on Sendgrid
+
+   - Click on `Create New Sender` under Marketing=> Senders  
+     ![Sender ](./README-IMAGES/sender-screenshot.png)
+   - Fill in all sender information
+     ![Sender Info ](./README-IMAGES/fill-sender-info)
+   - You will receieve a verification email
+   - Copy API key from Email API => Integration Guide => Web API=> NodeJS.
    - Rename `.env example` into `.env`
-   - Add API KEY into `SENDGRID_API_KEY` variable and remove the `#` from beside it
-     ![env-screenshot](./README-IMAGES/env-screenshot.png)
+   - Add API KEY into `SENDGRID_API_KEY` and sendgrid email into `SENDGRID_EMAIL` variable and remove the `#` from beside them
+     ![Env Screenshot](./README-IMAGES/env-screenshot.png)
+   - Lastly click on `Authenticate Your Domain` under Settings=> Sender Authentication
+   - Follow the steps to installDNS Records by adding the records provided by Sendgrid to your domain DNS section
+
 4. Database:
    - Install `MongoDB` on your device
    - Install `mangoose` into your backend project using `npm i mongoose`
