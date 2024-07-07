@@ -11,9 +11,9 @@ In order to install the project
 3. Create account on Sendgrid and copy API key.
    - Rename `.env example` into `.env`
    - Add API KEY into `SENDGRID_API_KEY` variable and remove the `#` from beside it
-     ![env-screenshot](env-screenshot.png)
+     ![env-screenshot](./README-IMAGES/env-screenshot.png)
 4. Database:
    - Install `MongoDB` on your device
    - Install `mangoose` into your backend project using `npm i mongoose`
    - Add your DB connection string into the backend index.js file
-     ![Database Connection](database-connection-screenshot.png)
+     ![Database Connection](./README-IMAGES/database-connection-screenshot.png)
