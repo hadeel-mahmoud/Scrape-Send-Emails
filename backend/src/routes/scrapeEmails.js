@@ -32,8 +32,17 @@ router.post("/insert-url-scraped-emails", async (req, res) => {
         upsert: true,
       },
     }));
-    await Email.bulkWrite(bulkOperations);
-    res.status(201).send({ message: "Records inserted successfully" });
+    const result = await Email.bulkWrite(bulkOperations);
+    // upserted amount is the # of newly created items
+    if (result.upsertedCount > 0) {
+      res
+        .status(201)
+        .send({
+          message: `${result.upsertedCount} Emails have been successfuly scraped and saved into the database`,
+        });
+    } else {
+      res.status(201).send({ message: "All emails in URL already exist" });
+    }
   } catch (e) {
     res.status(500).send({ error: `${e} : "Failed to insert records` });
   }

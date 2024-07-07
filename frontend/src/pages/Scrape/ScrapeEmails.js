@@ -13,7 +13,8 @@ export const SrapeEmails = (props) => {
   const communitiesData = props.communitiesData;
   function handleScrapeClick() {
     console.log(communitiesData);
-    if (selectedURL) {
+    // !showLoader is to avoid sending more than one request if user clicks more than once
+    if (selectedURL && !showLoader) {
       setShowLoader(true);
 
       scrapeEmails(
@@ -22,10 +23,12 @@ export const SrapeEmails = (props) => {
       )
         .then((response) => {
           setShowLoader(false);
-
+          console.log(response);
           if (response.status === 201) {
             alert(
-              "Emails have been successfuly scraped and saved into the database"
+              response.data.message
+                ? response.data.message
+                : "Emails have been successfuly scraped and saved into the database"
             );
           } else {
             alert("Oops! Something went wrong");
