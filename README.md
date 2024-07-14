@@ -21,6 +21,8 @@ In order to install the project
      ![Env Screenshot](./README-IMAGES/env-screenshot.png)
    - Lastly click on `Authenticate Your Domain` under Settings=> Sender Authentication
    - Follow the steps to installDNS Records by adding the records provided by Sendgrid to your domain DNS section
+   - Make sure its verified from sendgrid
+     ![Sendgrid verification](sendgrid-verification.png)
 
 4. Database:
    - Install `MongoDB` on your device
